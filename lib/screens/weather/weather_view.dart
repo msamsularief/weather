@@ -70,9 +70,6 @@ class _WeatherViewState extends State<WeatherView>
             )
             .toList();
 
-        debugPrint(
-            "WEATHERS NOW : ${weathersNow?.map((e) => e.dateTime.day).toList()}\n\nWEATHERS NEXT DAY : ${weathersNextDay?.map((e) => e.dateTime.day).toList()}");
-
         _selectedWeather = WeatherCommon.selectWeather(
           weathers!,
           DateTime.now().add(
