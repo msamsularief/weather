@@ -46,3 +46,45 @@ class Region extends Equatable {
         lon,
       ];
 }
+
+@immutable
+class RegionFromBMKG extends Equatable {
+  final String id, propinsi, code, lat, lon;
+
+  const RegionFromBMKG({
+    required this.id,
+    required this.propinsi,
+    required this.code,
+    required this.lat,
+    required this.lon,
+  });
+
+  factory RegionFromBMKG.fromJson(Map<String, dynamic> json) {
+    return RegionFromBMKG(
+      id: json['id'],
+      propinsi: json['propinsi'],
+      code: json['code'],
+      lat: json['latitude'],
+      lon: json['longitude'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['propinsi'] = propinsi;
+    data['code'] = code;
+    data['latitude'] = lat;
+    data['longitude'] = lon;
+    return data;
+  }
+
+  @override
+  List<Object?> get props => [
+        id,
+        propinsi,
+        code,
+        lat,
+        lon,
+      ];
+}
