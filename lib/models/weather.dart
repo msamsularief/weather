@@ -30,6 +30,26 @@ class Weather extends Equatable {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['jamCuaca'] = jamCuaca;
+    data['kodeCuaca'] = kodeCuaca;
+    data['cuaca'] = cuaca;
+    data['humidity'] = humidity;
+    data['tempC'] = tempC;
+    data['tempF'] = tempF;
+    return data;
+  }
+
+  Weather copyWith() => Weather(
+        jamCuaca: jamCuaca,
+        kodeCuaca: kodeCuaca,
+        cuaca: cuaca,
+        humidity: humidity,
+        tempC: tempC,
+        tempF: tempF,
+      );
+
   @override
   List<Object?> get props => [
         jamCuaca,
@@ -39,4 +59,40 @@ class Weather extends Equatable {
         tempC,
         tempF,
       ];
+}
+
+@immutable
+class WeatherFromBMKG extends Equatable {
+  final String id, description, type, code;
+  final DateTime dateTime;
+
+  const WeatherFromBMKG({
+    required this.id,
+    required this.description,
+    required this.type,
+    required this.dateTime,
+    required this.code,
+  });
+
+  factory WeatherFromBMKG.fromJson(Map<String, dynamic> json) =>
+      WeatherFromBMKG(
+        id: json['id'],
+        description: json['description'],
+        type: json['type'],
+        dateTime: DateTime.parse(json['dateTime']),
+        code: json['code'],
+      );
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['description'] = description;
+    data['type'] = type;
+    data['dateTime'] = dateTime.toString();
+    data['code'] = code;
+    return data;
+  }
+
+  @override
+  List<Object?> get props => [id, description, type, dateTime, code];
 }
